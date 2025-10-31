@@ -1,0 +1,79 @@
+        int arr1[] = {1,2,3,4,5};
+
+        final IntStream stream1 = Arrays.stream(arr1);
+        stream1.forEach(System.out::println);
+
+        List<Integer>list1 = List.of(10,30,40,50);
+        list1.stream().forEach(System.out::println);
+        list1.stream().filter(n -> n%2 ==0)
+                .forEach(System.out::println);
+        List<String> names = Arrays.asList("rahul","shankar","rohit","mohit");
+        names.stream().map(n -> n.toUpperCase())
+                .forEach(System.out::println);
+        names.stream().map(String::toUpperCase) //By Using method reference :: feature java8
+                .forEach(System.out::println);
+        List<Integer> numbers = Arrays.asList(1,2,3,4,5);
+        final Integer sum = numbers.stream()
+                .reduce(0,Integer::sum);
+        final Integer sum2 = numbers.stream()
+                .reduce(0,(a,b)->a+b);
+        System.out.println(sum+" "+sum2);
+
+        List<List<String>> listElements = Arrays.asList(
+                Arrays.asList("a","b"),
+                Arrays.asList("c","d"),
+                Arrays.asList("c","d")
+        );
+
+        listElements.stream()
+                .flatMap(n -> n.stream())
+                .map(n->n.toUpperCase())
+                .forEach(System.out::println);
+        listElements.stream()
+                .flatMap(Collection::stream)
+                .map(String::toUpperCase)
+                .forEach(System.out::println);
+
+                List<Integer> numbers = Arrays.asList(1,2,3,4,5);
+                List<Integer> outputList = numbers.stream()
+                        .peek(System.out::println)
+                        .map(n ->n*n)
+                        .peek(System.out::println)
+                        .collect(Collectors.toList());
+
+                List<Integer> numbers = Arrays.asList(1,2,3,1,4,2,3,4,5);
+                numbers.stream()
+                        .distinct()
+                        .forEach(System.out::println);
+
+                        List<Integer> numbers = Arrays.asList(6,7,8,1,2,3,4,5);
+                        numbers.stream()
+                                .sorted()
+                                .forEach(System.out::println);
+                        numbers.stream()
+                                .sorted(Comparator.reverseOrder())
+                                .forEach(System.out::println);
+                List<Integer> output = numbers.stream()
+                        .skip(2) //It will skip those many number of elements from start
+                        .collect(Collectors.toList());
+                output.forEach(System.out::println);
+
+        numbers.stream()
+                .limit(2)
+                .forEach(System.out::println);
+
+        List<Integer> list1 = Arrays.asList(1,2,3,4,5);
+        List<Integer> output = list1.stream()
+                .filter(n -> n%2==0)
+                .map(n -> n*n)
+                .collect(Collectors.toList());
+        System.out.println(output);
+
+        List<User> userList = Arrays.asList(
+                new User(12l,"first","second"),
+                new User(14l,"first","second")
+        );
+
+        userList.stream()
+                .collect(Collectors.groupingBy(user -> user.getId()));
+

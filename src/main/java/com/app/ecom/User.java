@@ -1,5 +1,6 @@
 package com.app.ecom;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
 
 @Data
